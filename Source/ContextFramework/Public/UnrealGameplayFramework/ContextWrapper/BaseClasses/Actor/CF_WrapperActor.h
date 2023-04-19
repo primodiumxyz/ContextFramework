@@ -12,7 +12,7 @@ class CONTEXTFRAMEWORK_API ACF_WrapperActor : public AActor, public ICF_Wrapper
 {
 public:
 
-
+	// should only be used for in level actors
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	bool IsInitializeContextOnBeginPlay = true;
 
@@ -21,9 +21,7 @@ public:
 	
 	UPROPERTY(VisibleInstanceOnly,BlueprintReadOnly)
 	int32 ContextId;
-
-	UPROPERTY(VisibleInstanceOnly,BlueprintReadOnly)
-	FCF_Context CachedCF_Context;
+	
 
 	
 	

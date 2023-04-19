@@ -22,22 +22,6 @@ public:
 
 
 	template<typename ComponentType>
-	inline static int32 GetSingletonComponentContextId(const UObject* WorldContextObject)
-	{
-		if(const auto GameInstance = UGameplayStatics::GetGameInstance(WorldContextObject))
-		{
-			if(US_CF_Groups* CF_CoreSubSystem = GameInstance->GetSubsystem<US_CF_Groups>())
-			{
-				const TArray<int32> GroupContexts =CF_CoreSubSystem->GetGroupContextIds_OneComponent<ComponentType>();
-				if(GroupContexts.Num() == 1)
-					return GroupContexts[0];
-			}
-		}
-		throw;
-	}
-
-
-	template<typename ComponentType>
 	inline static const ComponentType& GetSingletonComponent(const UObject* WorldContextObject)
 	{
 		if(const auto GameInstance = UGameplayStatics::GetGameInstance(WorldContextObject))
@@ -47,6 +31,21 @@ public:
 				const TArray<int32> GroupContexts =CF_CoreSubSystem->GetGroupContextIds_OneComponent<ComponentType>();
 				if(GroupContexts.Num() == 1)
 					return UCF_Statics::GetComponentOfContextId<ComponentType>(WorldContextObject,GroupContexts[0]);
+			}
+		}
+		throw;
+	}
+
+	template<typename ComponentType>
+	inline static int32 GetSingletonComponentContextId(const UObject* WorldContextObject)
+	{
+		if(const auto GameInstance = UGameplayStatics::GetGameInstance(WorldContextObject))
+		{
+			if(US_CF_Groups* CF_CoreSubSystem = GameInstance->GetSubsystem<US_CF_Groups>())
+			{
+				const TArray<int32> GroupContexts =CF_CoreSubSystem->GetGroupContextIds_OneComponent<ComponentType>();
+				if(GroupContexts.Num() == 1)
+					return GroupContexts[0];
 			}
 		}
 		throw;
@@ -99,6 +98,8 @@ public:
 		}
 		throw;
 	}
+
+	
 
 
 	template<typename ComponentType>

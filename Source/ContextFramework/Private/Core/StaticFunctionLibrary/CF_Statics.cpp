@@ -231,8 +231,6 @@ void UCF_Statics::SetComponentInstancedStructOfContextId(const UObject* WorldCon
 		{
 			if(Component.IsValid())
 				CF_CoreSubSystem->SetComponent(ContextId,Component);
-			else
-				throw;
 		}
 	}
 }
@@ -446,7 +444,7 @@ DEFINE_FUNCTION(UCF_Statics::execGetComponentOfContextId)
 	Stack.MostRecentPropertyAddress = nullptr;
 	Stack.MostRecentPropertyContainer = nullptr;
 	Stack.StepCompiledIn<FStructProperty>(nullptr);
-
+	
 	const FStructProperty* ValueProp = CastField<FStructProperty>(Stack.MostRecentProperty);
 	void* ValuePtr = Stack.MostRecentPropertyAddress;
 

@@ -93,7 +93,7 @@ struct CONTEXTFRAMEWORK_API FCF_Context
 	static void SetComponent(FCF_Context& Context,FInstancedStruct Component)
 	{
 		const auto ComponentId =Component.GetScriptStruct()->GetName(); 
-		Context.Components[ComponentId] = Component;
+		Context.Components[ComponentId].InitializeAs(Component.GetScriptStruct(),Component.GetMemory());
 	}
 
 	

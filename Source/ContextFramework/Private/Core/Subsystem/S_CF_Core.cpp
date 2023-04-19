@@ -97,7 +97,9 @@ void US_CF_Core::SetComponent(int32 ContextId, FInstancedStruct Component)
 			FCF_Context::SetComponent(Context,Component);
 		else
 			FCF_Context::AddComponent(Context,Component);
-	
+		
+	}
+	{
 		FCF_ComponentSetMessageBase ComponentSetMessage =FCF_ComponentSetMessageBase(ContextId,Component.GetScriptStruct()); 
 		FInstancedStruct ComponentSetMessageInstancedStruct ;
 		ComponentSetMessageInstancedStruct .InitializeAs<FCF_ComponentSetMessageBase>(ComponentSetMessage);

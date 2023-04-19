@@ -125,6 +125,17 @@ public:
 
 #pragma endregion "Copy Context"
 
+	UFUNCTION(BlueprintCallable, Category="ContextFramework", meta = (WorldContext = "WorldContextObject"))
+	static void CopyComponentsFromArchtype(const UObject* WorldContextObject,const FCF_ArchType& FromArchType, int32 ToContextId)
+	{
+		if(const auto GameInstance = UGameplayStatics::GetGameInstance(WorldContextObject))
+		{
+			if(US_CF_Core* CF_CoreSubSystem = GameInstance->GetSubsystem<US_CF_Core>())
+			{
+				CF_CoreSubSystem->CopyComponentsFromArchtype(FromArchType,ToContextId);
+			}
+		}
+	}
 
 	
 

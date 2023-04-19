@@ -4,6 +4,7 @@
 #include "UnrealGameplayFramework/ContextWrapper/BaseClasses/Actor/CF_WrapperActor.h"
 
 #include "Core/StaticFunctionLibrary/CF_Statics.h"
+#include "UnrealGameplayFramework/ContextWrapper/Components/ContextWrapperInstance/C_CF_ContextWrapperInstance.h"
 
 
 int32 ACF_WrapperActor::GetContextId() const 
@@ -20,6 +21,8 @@ const FCF_ArchType& ACF_WrapperActor::GetContextArchetype() const
 void ACF_WrapperActor::SetContextId(int32 _ContextId)
 {
 	ContextId  = _ContextId;
+	const FCF_ArchType ArchType = GetContextArchetype();
+	UCF_Statics::CopyComponentsFromArchtype(this,ArchType,ContextId);
 }
 
 void ACF_WrapperActor::BeginPlay()
@@ -27,8 +30,9 @@ void ACF_WrapperActor::BeginPlay()
 	Super::BeginPlay();
 	if(IsInitializeContextOnBeginPlay)
 	{
-		ContextId = UCF_Statics::CreateNewContextFromArchType(this,ContextArchetype).ContextId;
-		CachedCF_Context = UCF_Statics::GetContext(this);
+		ContextId = UCF_Statics::CreateNewContext(this).ContextId;
+		UCF_Statics::SetComponentOfContextId(this,ContextId,FC_CF_ContextWrapperInstance(this));
+		UCF_Statics::CopyComponentsFromArchtype(this,GetContextArchetype(),ContextId);
 	}
 	
 }
