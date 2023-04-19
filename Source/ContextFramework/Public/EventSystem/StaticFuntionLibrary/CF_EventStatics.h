@@ -64,9 +64,9 @@ public:
 	}
 
 	template <typename StructType>
-	inline static void RemoveLambda(UObject* WorldContextObject,FDelegateHandle Handle)
+	inline static bool RemoveLambda(UObject* WorldContextObject,FDelegateHandle Handle)
 	{
-		UGameplayStatics::GetGameInstance(WorldContextObject)->GetSubsystem<US_CF_Event>()->RemoveLambda<StructType>(Handle);
+		return UGameplayStatics::GetGameInstance(WorldContextObject)->GetSubsystem<US_CF_Event>()->RemoveLambda<StructType>(Handle);
 	}
 
 
