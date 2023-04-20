@@ -221,10 +221,10 @@ public:
 #pragma region "Get Component BP"
 	
 	UFUNCTION(BlueprintCallable, CustomThunk, Category = "ContextFramework", meta = (WorldContext="WorldContextObject",CustomStructureParam = "Value",ExpandEnumAsExecs = "ExecResult"))
-	static void GetComponentOfContextId(const UObject* WorldContextObject,ECF_GetComponentResult& ExecResult,int32 ContextId, int32& Value);
+	static void GetComponentOfContextId(ECF_GetComponentResult& ExecResult,const UObject* WorldContextObject,const int32 ContextId, int32& Value);
 	
 	UFUNCTION(BlueprintCallable, CustomThunk, Category = "ContextFramework", meta = (WorldContext="WorldContextObject",CustomStructureParam = "Value",ExpandEnumAsExecs = "ExecResult"))
-	static void GetComponent(const UObject* WorldContextObject,ECF_GetComponentResult& ExecResult, int32& Value);
+	static void GetComponent(ECF_GetComponentResult& ExecResult,const UObject* WorldContextObject, int32& Value);
 	
 #pragma endregion 
 

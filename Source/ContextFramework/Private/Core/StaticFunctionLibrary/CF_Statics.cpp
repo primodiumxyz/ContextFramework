@@ -252,13 +252,13 @@ void UCF_Statics::SetComponent(const  UObject* WorldContextObject, const int32& 
 	checkNoEntry();
 }
 
-void UCF_Statics::GetComponentOfContextId(const  UObject* WorldContextObject, ECF_GetComponentResult& ExecResult,
-                                          int32 ContextId, int32& Value)
+void UCF_Statics::GetComponentOfContextId(ECF_GetComponentResult& ExecResult,const  UObject* WorldContextObject, 
+                                          const int32 ContextId, int32& Value)
 {
 	checkNoEntry();
 }
 
-void UCF_Statics::GetComponent(const  UObject* WorldContextObject, ECF_GetComponentResult& ExecResult, int32& Value)
+void UCF_Statics::GetComponent( ECF_GetComponentResult& ExecResult,const  UObject* WorldContextObject, int32& Value)
 {
 	checkNoEntry();
 }
@@ -313,7 +313,7 @@ DEFINE_FUNCTION(UCF_Statics::execSetComponentOfContextId)
 
 
 	P_GET_OBJECT(UObject,WorldContextObject);
-	P_GET_UBOOL32(ContextId);
+	P_GET_PROPERTY(FIntProperty, ContextId);
 
 	
 	
@@ -435,11 +435,9 @@ DEFINE_FUNCTION(UCF_Statics::execSetComponentOfContextId)
 
 DEFINE_FUNCTION(UCF_Statics::execGetComponentOfContextId)
 {
-	P_GET_OBJECT(UObject,WorldContextObject);
 	P_GET_ENUM_REF(ECF_GetComponentResult, ExecResult);
-	P_GET_UBOOL32(ContextId);
-
-	
+	P_GET_OBJECT(UObject,WorldContextObject);
+	P_GET_PROPERTY(FIntProperty, ContextId);
 
 	Stack.MostRecentPropertyAddress = nullptr;
 	Stack.MostRecentPropertyContainer = nullptr;
@@ -477,8 +475,9 @@ DEFINE_FUNCTION(UCF_Statics::execGetComponentOfContextId)
 }
 DEFINE_FUNCTION(UCF_Statics::execGetComponent)
 {
-	P_GET_OBJECT(UObject,WorldContextObject);
 	P_GET_ENUM_REF(ECF_GetComponentResult, ExecResult);
+	P_GET_OBJECT(UObject,WorldContextObject);
+	
 	
 
 	
