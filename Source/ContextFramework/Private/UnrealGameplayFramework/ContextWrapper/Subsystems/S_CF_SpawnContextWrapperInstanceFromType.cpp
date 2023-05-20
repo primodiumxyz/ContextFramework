@@ -1,7 +1,7 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "UnrealGameplayFramework/ContextWrapper/Subsystems/SpawnContextWrapperInstanceFromType/S_CF_SpawnContextWrapperInstanceFromType.h"
+#include "UnrealGameplayFramework/ContextWrapper/Subsystems/S_CF_SpawnContextWrapperInstanceFromType.h"
 
 #include "Core/Component/Messages/ComponentSet/CF_ComponentSetMessage.h"
 #include "Core/StaticFunctionLibrary/CF_Statics.h"
